@@ -9,14 +9,15 @@ const mobileBreakpoint = 700;
 
 function App() {
   const isMobile = useCurrentWidth() < mobileBreakpoint;
-  const [activeState, setActiveState] = useState(1);
-
-  console.log(activeState);
+  const [activeState, setActiveState] = useState(0);
+  const handleToggle = (index) => {
+    setActiveState(activeState !== index ? index : false);
+  };
 
   return (
     <div className="container flex flex-wrap my-10 mx-auto p-5">
       <div
-        className={`flex flex-col flex-row ${
+        className={`flex flex-col flex-row w-full ${
           isMobile === true ? "space-y-5 border-b" : " space-x-5"
         }`}
       >
@@ -25,6 +26,7 @@ function App() {
             data={tabsData}
             isActive={activeState}
             setActive={setActiveState}
+            toggle={handleToggle}
           />
         ) : (
           <Tabs
