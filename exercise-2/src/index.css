@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.tabs {
+  border: 1px solid black;
+}
+
+.tabs.active {
+  border: 1px solid red;
+}
+
+.tab-content,
+.accordion-content {
+  display: none;
+}
+
+.tab-content.active,
+.accordion-content.active {
+  display: block;
+}
