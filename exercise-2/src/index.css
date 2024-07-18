@@ -15,6 +15,6 @@
 }
 
 .tab-content.active,
-.accordion-content.active {
+.accordion-group.active > .accordion-content {
   display: block;
 }

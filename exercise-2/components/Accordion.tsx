@@ -1,27 +1,37 @@
-const Accordion = ({ data, isActive, setActive }: any) => {
+import { act, useState } from "react";
+
+const Accordion = ({ data, isActive, setActive, toggle }: any) => {
+  console.log(isActive);
   return (
     <>
       {data.map((tab, index) => {
         return (
-          <div key={index} className="border border-black/10">
+          <div
+            key={index}
+            className={`accordion-group border border-black/10 ${
+              index === isActive ? "active" : "hide"
+            }`}
+          >
             <button
               className={`py-2 border-b-2 transition-colors duration-300 w-full ${
                 index === isActive
                   ? "text-teal-500"
                   : "border-transparent hover:border-gray-300"
               }`}
-              onClick={() => setActive(index)}
+              onClick={() => {
+                toggle(index);
+              }}
             >
               {tab.title}
             </button>
-            <div
-              className={`accordion-content p-5 ${
-                index === isActive ? "active" : "hidden"
-              }`}
-              dangerouslySetInnerHTML={{
-                __html: data[isActive].content,
-              }}
-            />
+            {index === isActive && (
+              <div
+                className={`accordion-content p-5 `}
+                dangerouslySetInnerHTML={{
+                  __html: data[isActive].content,
+                }}
+              />
+            )}
           </div>
         );
       })}
